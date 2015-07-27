@@ -18,7 +18,7 @@ if __name__ == "__main__":
     # download the downloader to current directory
     os.system("sudo wget " + tr_credentials["download_location"] + " -P /home/ubuntu/TRDownloader/")
     # now unzip downloader
-    os.system("sudo unzip /home/ubuntu/TRDownloader/cdt-client-3.9.6-linux_x64.zip")
+    os.system("sudo unzip /home/ubuntu/TRDownloader/cdt-client-3.9.6-linux_x64.zip -d /home/ubuntu/TRDownloader/")
     # pipe in all required input for downloader prompts
     os.system("printf 'o\n\n\n\n\n\n1\n\n\n/home/ubuntu/output\nn\n' | sudo sh /home/ubuntu/TRDownloader/cdt-client-3.9.6-linux_x64.sh")
     # now pipe in required input for configurator prompts
