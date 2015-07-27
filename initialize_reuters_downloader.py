@@ -16,7 +16,7 @@ if __name__ == "__main__":
     #this is where we'll put the program
     os.system("sudo mkdir /home/ubuntu/TRDownloader")
     # download the downloader to current directory
-    os.system("sudo wget " + tr_credentials["download_location"] + "/home/ubuntu/TRDownloader/cdt-client-3.9.6-linux_x64.zip")
+    os.system("sudo wget " + tr_credentials["download_location"] + " -P /home/ubuntu/TRDownloader/")
     # now unzip downloader
     os.system("sudo unzip /home/ubuntu/TRDownloader/cdt-client-3.9.6-linux_x64.zip")
     # pipe in all required input for downloader prompts
