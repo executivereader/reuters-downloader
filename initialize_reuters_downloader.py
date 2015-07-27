@@ -15,15 +15,12 @@ if __name__ == "__main__":
     os.system("sudo mkdir /home/ubuntu/output")
     #this is where we'll put the program
     os.system("sudo mkdir /home/ubuntu/TRDownloader")
-    os.system("cd /home/ubuntu/TRDownloader")
     # download the downloader to current directory
-    os.system("sudo wget " + tr_credentials["download_location"])
+    os.system("sudo wget " + tr_credentials["download_location"] + "/home/ubuntu/TRDownloader/cdt-client-3.9.6-linux_x64.zip")
     # now unzip downloader
-    os.system("sudo unzip cdt-client-3.9.6-linux_x64.zip")
+    os.system("sudo unzip /home/ubuntu/TRDownloader/cdt-client-3.9.6-linux_x64.zip")
     # pipe in all required input for downloader prompts
-    os.system("printf 'o\n\n\n\n\n\n1\n\n\n/home/ubuntu/output\nn\n' | sudo sh cdt-client-3.9.6-linux_x64.sh")
-    # go to directory where stuff was installed
-    os.system("cd /usr/local/Reuters/ContentDownloader3")
+    os.system("printf 'o\n\n\n\n\n\n1\n\n\n/home/ubuntu/output\nn\n' | sudo sh /home/ubuntu/TRDownloader/cdt-client-3.9.6-linux_x64.sh")
     # now pipe in required input for configurator prompts
     # wrinkle here: make_config.sh does not allow pipes
     # so we use socat to trick it into thinking it is in a tty
