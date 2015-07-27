@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+sudo apt-get update
 sudo apt-get install -y git
 cd /home/ubuntu/
 sudo git clone https://github.com/executivereader/mongo-startup.git
