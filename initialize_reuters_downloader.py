@@ -13,6 +13,9 @@ if __name__ == "__main__":
     os.system("sudo apt-get update")
     # this is where we'll put the files
     os.system("sudo mkdir /home/ubuntu/output")
+    #this is where we'll put the program
+    os.system("sudo mkdir /home/ubuntu/TRDownloader")
+    os.system("cd /home/ubuntu/TRDownloader")
     # download the downloader to current directory
     os.system("sudo wget " + tr_credentials["download_location"])
     # now unzip downloader
@@ -24,6 +27,6 @@ if __name__ == "__main__":
     # now pipe in required input for configurator prompts
     # wrinkle here: make_config.sh does not allow pipes
     # so we use socat to trick it into thinking it is in a tty
-    os.system("printf 'downloader\n" + tr_credentials["username"] + "\n" + tr_credentials["password"] + "\n\n\n\ntrue\n' | socat - EXEC:'sudo sh make_config.sh',pty,setsid,ctty")
+    os.system("printf 'downloader\n" + tr_credentials["username"] + "\n" + tr_credentials["password"] + "\n\n\n\ntrue\n' | socat - EXEC:'sudo sh /usr/local/Reuters/ContentDownloader3/make_config.sh',pty,setsid,ctty")
     # now run the setup command that also starts service
-    os.system("sudo sh setupservice.sh")
+    os.system("sudo sh /usr/local/Reuters/ContentDownloader3/setupservice.sh")
