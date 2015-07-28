@@ -10,4 +10,4 @@ sudo cp /home/ubuntu/mongo-startup/update_replica_set.py update_replica_set.py
 sudo apt-get install -y python-dev python-pip
 sudo pip install pymongo xmltodict
 sudo python initialize_reuters_downloader.py
-sudo screen -dm -c "sudo python parse_reuters_articles.py"
+sudo screen -dm bash -c "sudo python parse_reuters_articles.py"
