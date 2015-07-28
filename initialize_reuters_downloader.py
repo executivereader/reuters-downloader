@@ -27,3 +27,10 @@ if __name__ == "__main__":
     os.system("printf 'downloader\n" + tr_credentials["username"] + "\n" + tr_credentials["password"] + "\n\n\n\ntrue\n' | socat - EXEC:'sudo sh /usr/local/Reuters/ContentDownloader3/make_config.sh',pty,setsid,ctty")
     # now run the setup command that also starts service
     os.system("sudo sh /usr/local/Reuters/ContentDownloader3/setupservice.sh")
+    # now need to copy around some config files
+    os.system("sudo cp /home/ubuntu/reuters-downloader/conf/configuration.xml /usr/local/Reuters/ContentDownloader3/conf/configuration.xml")
+    os.system("sudo cp /home/ubuntu/reuters-downloader/conf/server.xml /usr/local/Reuters/ContentDownloader3/conf/server.xml")
+    # now replace the username and password
+    os.system("sudo sed -i -e s/username_here/" + tr_credentials["username"] + "/g /home/ubuntu/reuters-downloader/conf/configuration.xml")
+    os.system("sudo sed -i -e s/hashed_password_here/" + tr_credentials["hashed_password"] + "/g /home/ubuntu/reuters-downloader/conf/configuration.xml")
+    
