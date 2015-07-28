@@ -19,13 +19,16 @@ def upload_all_documents_to_mongo(path, client):
                 filedict = xmltodict.parse(infile)
                 success = client.tr.articles.insert(filedict)
             if success:
+                print "Successfully inserted " + filename
                 os.remove(path + filename)
+            else:
+                print "Error on file " + filename
 
 if __name__ == "__main__":
     path = "/home/ubuntu/output/Reuters World Service/"
     client = start_mongo_client()
     while 1:
         try:
-            upload_all_document_to_mongo(path, client)
+            upload_all_documents_to_mongo(path, client)
         except Exception as exc:
             print exc
