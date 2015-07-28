@@ -31,6 +31,6 @@ if __name__ == "__main__":
     os.system("sudo cp /home/ubuntu/reuters-downloader/conf/configuration.xml /usr/local/Reuters/ContentDownloader3/conf/configuration.xml")
     os.system("sudo cp /home/ubuntu/reuters-downloader/conf/server.xml /usr/local/Reuters/ContentDownloader3/conf/server.xml")
     # now replace the username and password
-    os.system("sudo sed -i -e s/usernamehere/" + tr_credentials["username"] + "/g /home/ubuntu/reuters-downloader/conf/configuration.xml")
-    os.system("sudo sed -i -e s/hashedpasswordhere/" + tr_credentials["hashed_password"] + "/g /home/ubuntu/reuters-downloader/conf/configuration.xml")
+    os.system("sudo sed -i -e s/usernamehere/" + tr_credentials["username"] + "/g /usr/local/Reuters/ContentDownloader3/conf/configuration.xml")
+    os.system("sudo sed -i -e s/hashedpasswordhere/" + tr_credentials["hashed_password"] + "/g /usr/local/Reuters/ContentDownloader3/conf/configuration.xml")
     
