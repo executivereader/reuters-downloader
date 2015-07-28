@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cdtServerConfig CREATION_DATETIME="07/28/2015 14:45:34 +0000"> 
+  <clientIdentifier>1544561394</clientIdentifier>  
+  <deliveryFormat>xml</deliveryFormat>  
+  <authServerDomain>content.reuters.com</authServerDomain>  
+  <secureAuthServerDomain>secure.content.reuters.com</secureAuthServerDomain>  
+  <contentFilters> 
+    <contentFilter name="DefaultFilter" processingOrder="100"> 
+      <saveXML fileNameXpath="/newsMessage/itemSet/newsItem/itemMeta/fileName">false</saveXML>  
+      <matchIfExists xpath="/"/> 
+    </contentFilter>  
+    <contentFilter name="OnlineReportFilter-SNI-Summary" processingOrder="1"> 
+      <saveXML fileNameXpath="/newsMessage/itemSet/newsItem/itemMeta/fileName">false</saveXML>  
+      <matchIfExists xpath="/newsMessage/itemSet[newsItem/contentMeta/subject[@qcode='OCC:OLRSUM']]"/> 
+    </contentFilter>  
+    <contentFilter name="OnlineReportFilter-SNI" processingOrder="10"> 
+      <saveXML fileNameXpath="/newsMessage/itemSet/newsItem/itemMeta/fileName">false</saveXML>  
+      <matchIfExists xpath="(/newsMessage/itemSet[newsItem/itemMeta[starts-with(profile, 'SNI-')]]) or (/newsMessage/itemSet[newsItem/contentMeta/subject[@qcode='OCC:OLRSUM']])"/>  
+      <rendition name="ZIP File" urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:archive']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:archive']/altId[@type='idType:fileBIN']"/>  
+      <rendition name="Medium JPEG: 640 pixels (Pictures) 450 pixels (Online Reports)" urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:viewImage']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:viewImage']/altId[@type='idType:fileBIN']"/>  
+      <rendition name="Large JPEG: 3500 pixels* (Pictures) 800 pixels (Online Reports)" urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:baseImage']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:baseImage']/altId[@type='idType:fileBIN']"/>  
+      <rendition name="Small JPEG: 150 pixels (Pictures &amp; Online Reports)" urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:thumbnail']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:thumbnail']/altId[@type='idType:fileBIN']"/>  
+      <rendition name="View resolution JPEG Image" urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:viewImage']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:viewImage']/altId[@type='idType:fileBIN']"/>  
+      <rendition name="EPS File " urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:baseImage']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:baseImage']/altId[@type='idType:fileBIN']"/>  
+      <rendition name="Thumbnail resolution JPEG Image" urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:thumbnail']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:thumbnail']/altId[@type='idType:fileBIN']"/>  
+      <rendition name="Base JPEG: 3500 pixels* (Online Reports only)" urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:filedImage']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:filedImage']/altId[@type='idType:fileBIN']"/> 
+    </contentFilter>  
+    <contentFilter name="OnlineReportFilter-NEP" processingOrder="3"> 
+      <saveXML fileNameXpath="/newsMessage/itemSet/packageItem/itemMeta/fileName">false</saveXML>  
+      <matchIfExists xpath="(/newsMessage/itemSet[packageItem/itemMeta[ starts-with(profile, 'NEP-')]]) and (/newsMessage/itemSet/packageItem/itemMeta/signal[@qcode='pmt:composite'])"/> 
+    </contentFilter>  
+    <contentFilter name="OnlineReportFilter-SNEP" processingOrder="2"> 
+      <saveXML fileNameXpath="/newsMessage/itemSet/packageItem/itemMeta/fileName">false</saveXML>  
+      <matchIfExists xpath="(/newsMessage/itemSet[packageItem/itemMeta[ starts-with(profile, 'SNEP-')]]) and (/newsMessage/itemSet/packageItem/itemMeta/signal[@qcode='pmt:composite'])"/> 
+    </contentFilter>  
+    <contentFilter name="OnlineVideoFilter" processingOrder="5"> 
+      <saveXML fileNameXpath="/newsMessage/itemSet/packageItem/itemMeta/fileName">false</saveXML>  
+      <matchIfExists xpath="/newsMessage/itemSet/packageItem/itemMeta/signal[@qcode='pmt:video']"/>  
+      <matchValue xpath="/newsMessage/itemSet/packageItem/itemMeta/generator" value="Reuters Video Online"/> 
+    </contentFilter>  
+    <contentFilter name="GraphicFilter" processingOrder="6"> 
+      <saveXML fileNameXpath="/newsMessage/itemSet/newsItem/itemMeta/fileName">true</saveXML>  
+      <matchIfExists xpath="/newsMessage/itemSet/newsItem/itemMeta/signal[@qcode='pmt:graphic']"/>  
+      <rendition name="ZIP File" urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:archive']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:archive']/altId[@type='idType:fileBIN']"/>  
+      <rendition name="View resolution JPEG Image" urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:viewImage']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:viewImage']/altId[@type='idType:fileBIN']"/>  
+      <rendition name="EPS File " urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:baseImage']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:baseImage']/altId[@type='idType:fileBIN']"/>  
+      <rendition name="Thumbnail resolution JPEG Image" urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:thumbnail']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:graphic']]/contentSet/remoteContent[@rendition='rend:thumbnail']/altId[@type='idType:fileBIN']"/> 
+    </contentFilter>  
+    <contentFilter name="PictureFilter" processingOrder="7"> 
+      <saveXML fileNameXpath="/newsMessage/itemSet/newsItem/itemMeta/fileName">true</saveXML>  
+      <matchIfExists xpath="/newsMessage/itemSet/newsItem/itemMeta/signal[@qcode='pmt:picture']"/>  
+      <rendition name="Medium JPEG: 640 pixels (Pictures) 450 pixels (Online Reports)" urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:viewImage']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:viewImage']/altId[@type='idType:fileBIN']"/>  
+      <rendition name="Large JPEG: 3500 pixels* (Pictures) 800 pixels (Online Reports)" urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:baseImage']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:baseImage']/altId[@type='idType:fileBIN']"/>  
+      <rendition name="Small JPEG: 150 pixels (Pictures &amp; Online Reports)" urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:thumbnail']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:thumbnail']/altId[@type='idType:fileBIN']"/>  
+      <rendition name="Base JPEG: 3500 pixels* (Online Reports only)" urlXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:filedImage']/altLoc[@type='locType:http']" fileNameXPath="/newsMessage/itemSet/newsItem[itemMeta/itemClass[@qcode='icls:picture']]/contentSet/remoteContent[@rendition='rend:filedImage']/altId[@type='idType:fileBIN']"/> 
+    </contentFilter>  
+    <contentFilter name="TextFilter" processingOrder="8"> 
+      <saveXML fileNameXpath="/newsMessage/itemSet/newsItem/itemMeta/fileName">true</saveXML>  
+      <matchIfExists xpath="(/newsMessage/itemSet/newsItem/itemMeta/signal[@qcode='pmt:text'])"/> 
+    </contentFilter> 
+  </contentFilters>  
+  <threadGroups> 
+    <threadGroup name="xmlThreads" threads="5"/>  
+    <threadGroup name="pictureThreads" threads="3"/>  
+    <threadGroup name="videoThreads" threads="2"/> 
+  </threadGroups>  
+  <pollingQueries> 
+    <pollDelay>15</pollDelay>  
+    <queryWindow>28800</queryWindow>  
+    <wsItemUrlPrefix>http://rmb.reuters.com/rmd/rest/xml/item/</wsItemUrlPrefix>  
+    <awsChannelsUrl>http://rmb.reuters.com/rmd/rest/xml/channels</awsChannelsUrl>  
+    <wsChannelInfoXPath>/availableChannels/channelInformation/lastUpdate</wsChannelInfoXPath>  
+    <wsQuery name="Press Releases"> 
+      <wsRequestUrl>http://rmb.reuters.com/rmd/rest/xml/items/daterange:%OLDESTDATE%-%NEWESTDATE%::channel:ptr741/%ITEMSNUMBER%</wsRequestUrl>  
+      <wsRequestChannelInfo>http://rmb.reuters.com/rmd/rest/xml/channels/ptr741</wsRequestChannelInfo>  
+      <localDirectory>/home/ubuntu/output/Press Releases</localDirectory>  
+      <channelCategory order="100">Text</channelCategory> 
+    </wsQuery>  
+    <wsQuery name="Reuters World Service"> 
+      <wsRequestUrl>http://rmb.reuters.com/rmd/rest/xml/items/daterange:%OLDESTDATE%-%NEWESTDATE%::channel:STK567/%ITEMSNUMBER%</wsRequestUrl>  
+      <wsRequestChannelInfo>http://rmb.reuters.com/rmd/rest/xml/channels/STK567</wsRequestChannelInfo>  
+      <localDirectory>/home/ubuntu/output/Reuters World Service</localDirectory>  
+      <channelCategory order="100">Text</channelCategory> 
+    </wsQuery> 
+  </pollingQueries> 
+</cdtServerConfig>

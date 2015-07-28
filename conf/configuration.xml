@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <content>
+        <configuration>
+            <description>downloader</description>
+            <wsLoginUrl>https://commerce.reuters.com/rmd/rest/xml/login?ust=2,4</wsLoginUrl>
+            <verifyUrl>https://rmb.reuters.com/rmd/rest/xml/ping</verifyUrl>
+            <wsUsername>username_here</wsUsername>
+            <wsPassword>hashed_password_here</wsPassword>
+            <isHttps>true</isHttps>
+        </configuration>
+    </content>
+</root>
