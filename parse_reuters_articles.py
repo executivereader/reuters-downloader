@@ -3,6 +3,7 @@ import xmltodict
 import os
 from update_replica_set import start_mongo_client
 from time import sleep
+from pymongo.errors import DuplicateKeyError
 
 def upload_all_documents_to_mongo(path, client):
     """
@@ -13,17 +14,25 @@ def upload_all_documents_to_mongo(path, client):
     Returns:
         None
     """
-    for filename in os.listdir(path):
+    filenames = os.listdir(path)
+    for filename in filenames:
         if os.path.isfile(path + filename):
             success = False
             with open(path + filename) as infile:
                 filedict = xmltodict.parse(infile)
-                success = client.tr.articles.insert(filedict)
+                try:
+                    success = client.tr.articles.insert(filedict)
+                except DuplicateKeyError as dup:
+                    print "Already in database: " + filename
+                    os.remove(path + filename)
+                except Exception as exc:
+                    print exc
+                    filenames.remove(filename)
             if success:
                 print "Successfully inserted " + filename
                 os.remove(path + filename)
             else:
-                print "Error on file " + filename
+                print "Unable to insert file " + filename
 
 if __name__ == "__main__":
     path = "/home/ubuntu/output/Reuters World Service/"
