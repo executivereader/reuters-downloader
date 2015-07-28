@@ -2,6 +2,7 @@
 import xmltodict
 import os
 from update_replica_set import start_mongo_client
+from time import sleep
 
 def upload_all_documents_to_mongo(path, client):
     """
@@ -28,6 +29,7 @@ if __name__ == "__main__":
     path = "/home/ubuntu/output/Reuters World Service/"
     client = start_mongo_client()
     while 1:
+        sleep(5)
         try:
             upload_all_documents_to_mongo(path, client)
         except Exception as exc:
